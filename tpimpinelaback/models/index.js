@@ -7,6 +7,7 @@ const Server = require('./server');
 const Usuario = require('./usuario');
 const Incidencia = require('./incidencia');
 const ResponseIncidencia = require('./response_incidencia');
+const UsuariosRoles = require('./usuariosroles');
 
 
 
@@ -19,5 +20,6 @@ module.exports = {
     Usuario,
     ResponseIncidencia,
     Incidencia,
+    UsuariosRoles,
 }
 

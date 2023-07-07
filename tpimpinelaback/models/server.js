@@ -18,6 +18,7 @@ class Server {
             roles:      '/api/roles',
             incidencias: '/api/incidencias',
             resincidencias:  '/api/resincidencias',
+            usuariosroles: '/api/usuariosroles'
         }
 
         // Conectar a base de datos
@@ -58,6 +59,8 @@ class Server {
         this.app.use( this.paths.roles, require('../routes/roles'));
         this.app.use( this.paths.incidencias, require('../routes/incidencias'));
         this.app.use( this.paths.resincidencias, require('../routes/resincidencias'));
+        this.app.use( this.paths.usuariosroles, require('../routes/usuariosroles'));
+        
         
     }
 

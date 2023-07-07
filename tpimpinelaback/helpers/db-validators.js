@@ -61,6 +61,15 @@ const existeUsuarioPorId = async( id ) => {
     }
 }
 
+const existeRolePorId = async( id ) => {
+
+    // Verificar si el correo existe
+    const exite = await Role.findById(id);
+    if ( !exite ) {
+        throw new Error(`El id no existe ${ id }`);
+    }
+}
+
 /**
  * Categorias
  */
@@ -94,6 +103,7 @@ module.exports = {
     existeProductoPorId,
     rolExiste,
     existeRolPorId,
-    existeUIncidenciaPorId
+    existeUIncidenciaPorId,
+    existeRolePorId
 }
 

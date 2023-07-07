@@ -39,7 +39,7 @@ const obtenerResponseIncidencia = async(req, res = response ) => {
    
     if (filter){
         resIncidencia =  resIncidencia.filter(element => {
-                console.log(element.incidencia.estado);
+              
             return  element.incidencia?.estado.toLowerCase()== filter.toLowerCase()
           });
     }
