@@ -18,8 +18,6 @@ const UsuarioSchema = Schema({
     img: {
         type: String,
     },
-
-    
     rol: {
         type: String,
         required: true,
@@ -29,10 +27,6 @@ const UsuarioSchema = Schema({
     estado: {
         type: Boolean,
         default: true
-    },
-    google: {
-        type: Boolean,
-        default: false
     },
 });
 

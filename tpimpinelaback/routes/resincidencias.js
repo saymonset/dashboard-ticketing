@@ -6,7 +6,7 @@ const { validarJWT, validarCampos, esAdminRole } = require('../middlewares');
 const { crearResIncidencia,
         obtenerResponseIncidencia,
         obtenerProducto,
-        actualizarProducto, 
+        actualizarProducto,
         borrarProducto } = require('../controllers/resincidencias');
 
 const { existeUsuarioPorId,existeUIncidenciaPorId, existeProductoPorId } = require('../helpers/db-validators');
@@ -18,9 +18,9 @@ const router = Router();
  */
 
 //  Obtener todas las categorias - publico
-router.get('/', obtenerResponseIncidencia );
+router.get('/:id', obtenerResponseIncidencia );
 
- 
+
 
 // Obtener una categoria por id - publico
 router.get('/:id',[
@@ -30,7 +30,7 @@ router.get('/:id',[
 ], obtenerProducto );
 
 // Crear categoria - privado - cualquier persona con un token válido
-router.post('/', [ 
+router.post('/', [
     check('mensaje','El mensaje es obligatorio').not().isEmpty(),
     check('incidencia','No es un id de Mongo').isMongoId(),
   //  check('incidencia').custom( existeUIncidenciaPorId ),

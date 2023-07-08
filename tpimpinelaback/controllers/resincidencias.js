@@ -25,29 +25,29 @@ const obtenerProductos = async(req, res = response ) => {
 
 
 const obtenerResponseIncidencia = async(req, res = response ) => {
- 
 
-    const { limite = 5, desde = 0 } = req.query;
+    let respose_incidencias =  await ResponseIncidencia.find()
+    .populate('incidencia');
 
-    let resIncidencia =  await ResponseIncidencia.find()
-    .populate('usuario')
-    .populate('incidencia')
-    .skip( Number( desde ) )
-    .limit(Number( limite ));
-
+    const { id } = req.params;
     const {filter} = req.query;
-   
+
     if (filter){
-        resIncidencia =  resIncidencia.filter(element => {
-              
+      respose_incidencias =  respose_incidencias.filter(element => {
             return  element.incidencia?.estado.toLowerCase()== filter.toLowerCase()
           });
     }
 
-    
+    if (id){
+      respose_incidencias =  respose_incidencias.filter(element => {
+        return  element.incidencia?._id == id
+      });
+    }
+
+
 
     res.json({
-        resIncidencia
+      respose_incidencias
     });
 }
 
@@ -66,7 +66,7 @@ const crearResIncidencia = async(req, res = response ) => {
 
     const {  ...body } = req.body;
 
-   
+
     // Generar la data a guardar
     const data = {
         ...body
