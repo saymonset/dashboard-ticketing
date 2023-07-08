@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
+
+
 const { dbConnection } = require('../database/config');
 
 class Server {
@@ -41,6 +43,7 @@ class Server {
         // CORS
         this.app.use( cors() );
 
+
         // Lectura y parseo del body
         this.app.use( express.json() );
 
@@ -50,7 +53,7 @@ class Server {
     }
 
     routes() {
-        
+
         this.app.use( this.paths.auth, require('../routes/auth'));
         this.app.use( this.paths.buscar, require('../routes/buscar'));
         this.app.use( this.paths.categorias, require('../routes/categorias'));
@@ -60,8 +63,8 @@ class Server {
         this.app.use( this.paths.incidencias, require('../routes/incidencias'));
         this.app.use( this.paths.resincidencias, require('../routes/resincidencias'));
         this.app.use( this.paths.usuariosroles, require('../routes/usuariosroles'));
-        
-        
+
+
     }
 
     listen() {

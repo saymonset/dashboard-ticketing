@@ -11,6 +11,8 @@ const usuariosGet = async(req = request, res = response) => {
     const query = { estado: true };
     const usuarios = await Usuario.find(query);
 
+
+
     res.json({
         usuarios
     });
