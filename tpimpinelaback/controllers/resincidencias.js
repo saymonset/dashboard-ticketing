@@ -1,6 +1,7 @@
 const { response } = require('express');
 const { Producto } = require('../models');
 const ResponseIncidencia = require('../models/response_incidencia');
+const usuario = require('../models/usuario');
 
 
 const obtenerProductos = async(req, res = response ) => {
@@ -27,21 +28,23 @@ const obtenerProductos = async(req, res = response ) => {
 const obtenerResponseIncidencia = async(req, res = response ) => {
 
     let respose_incidencias =  await ResponseIncidencia.find()
-    .populate('incidencia');
+    .populate('incidencia')
+    .populate('usuario');
 
     const { id } = req.params;
-    const {filter} = req.query;
+    const { estado} = req.query;
 
-    if (filter){
+    if (estado){
       respose_incidencias =  respose_incidencias.filter(element => {
-            return  element.incidencia?.estado.toLowerCase()== filter.toLowerCase()
-          });
+            return  element.incidencia?.estado.toLowerCase()== estado.toLowerCase()
+          })
+
     }
 
     if (id){
       respose_incidencias =  respose_incidencias.filter(element => {
         return  element.incidencia?._id == id
-      });
+      })
     }
 
 

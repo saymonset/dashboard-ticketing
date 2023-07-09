@@ -3,31 +3,41 @@ const { Role } = require('../models');
 const Incidencia = require('../models/incidencia');
 
 
- 
+
 
 const incidenciasGet = async(req = request, res = response) => {
     let incidencias = await Incidencia.find();
 
-    const {filter} = req.query;
-   
-    console.log(` filtrp = ${filter}`);
-    if (filter){
+    const {estado, mensaje} = req.query;
+
+    if (estado){
         incidencias =  incidencias.filter(element => {
                 console.log(element.estado);
-            return  element?.estado.toLowerCase()== filter.toLowerCase()
+            return  element?.estado.toLowerCase()== estado.toLowerCase()
           });
     }
-    
+
+  if (mensaje){
+    incidencias =  incidencias.filter(element => {
+
+      let indice = element?.mensaje?.toLowerCase().includes(mensaje.toLowerCase());
+      if (indice > 0)
+         return true;
+      else
+         return false;
+    });
+  }
+
     res.json({
         incidencias
     });
 }
 
 const incidenciaPost = async(req, res = response) => {
-    
+
     const {  mensaje, tipo_incidencia, estado } = req.body;
-    
-    
+
+
     const query = { estado: { $ne: false }  };
     const num_incidencia = await Incidencia.countDocuments(query) + 1;
 
@@ -42,9 +52,9 @@ const incidenciaPost = async(req, res = response) => {
         incidencia
     });
 }
- 
 
- 
+
+
 const incidenciaPut = async(req, res = response) => {
 
     const { id } = req.params;
@@ -56,18 +66,18 @@ const incidenciaPut = async(req, res = response) => {
 const incidenciaDelete = async(req, res = response) => {
 
     const { id } = req.params;
-    
+
     const incidencia = await Incidencia.findByIdAndDelete( id );
 
-    
+
     res.json(incidencia);
 }
 
- 
+
 module.exports = {
-   
+
     incidenciaPut,
- 
+
     incidenciaDelete,
     incidenciasGet,
     incidenciaPost
