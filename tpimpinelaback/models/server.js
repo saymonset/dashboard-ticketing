@@ -12,6 +12,7 @@ class Server {
         this.port = process.env.PORT;
 
         this.paths = {
+            authcreateuser:'/api/authcreateuser',
             auth:       '/api/auth',
             buscar:     '/api/buscar',
             categorias: '/api/categorias',
@@ -54,6 +55,7 @@ class Server {
 
     routes() {
 
+        this.app.use( this.paths.authcreateuser, require('../routes/authcreateuser'));
         this.app.use( this.paths.auth, require('../routes/auth'));
         this.app.use( this.paths.buscar, require('../routes/buscar'));
         this.app.use( this.paths.categorias, require('../routes/categorias'));

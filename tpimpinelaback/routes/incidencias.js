@@ -15,11 +15,11 @@ const {
 const {rolExiste } = require('../helpers/db-validators');
 
 const router = Router();
- 
 
 
-const { 
-   
+
+const {
+
     usuariosDelete,
     usuariosPatch } = require('../controllers/usuarios');
 
@@ -37,14 +37,14 @@ router.post('/',[
 ], incidenciaPost );
 
 router.put('/:id',[
-    check('tipo_incidencia', 'El  tipo de incidencia es obligatorio').not().isEmpty(),
+    check('estado', 'El  estado es obligatorio').not().isEmpty(),
     validarCampos
 ],incidenciaPut );
 
 
 
 /***
- * 
+ *
  * ,[
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom( existeUIncidenciaPorId ),
