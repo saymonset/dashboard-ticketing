@@ -6,9 +6,7 @@ const { check } = require('express-validator');
 const { existeUsuarioPorId, existeRolPorId } = require('../helpers/db-validators');
 const {
     validarCampos,
-    validarJWT,
-    esAdminRole,
-    tieneRole
+
 } = require('../middlewares');
 
 
@@ -18,10 +16,6 @@ const router = Router();
 
 
 
-const { 
-   
-    usuariosDelete,
-    usuariosPatch } = require('../controllers/usuarios');
 
 const { rolesGet,
         rolesPut,
@@ -39,9 +33,9 @@ router.put('/:id',[
 
 router.post('/',[
     check('rol', 'El nombre es obligatorio').not().isEmpty(),
-  
+
     // check('rol', 'No es un rol exista').isIn(['ADMIN_ROLE','USER_ROLE']),
-    check('rol').custom( rolExiste ), 
+    check('rol').custom( rolExiste ),
     validarCampos
 ], rolesPost );
 

@@ -3,25 +3,14 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 
 
-const { existeUIncidenciaPorId} = require('../helpers/db-validators');
 const {
     validarCampos,
-    validarJWT,
-    esAdminRole,
-    tieneRole
+
 } = require('../middlewares');
 
 
-const {rolExiste } = require('../helpers/db-validators');
-
 const router = Router();
 
-
-
-const {
-
-    usuariosDelete,
-    usuariosPatch } = require('../controllers/usuarios');
 
 const { incidenciasGet,
         incidenciaPost,
@@ -42,15 +31,6 @@ router.put('/:id',[
 ],incidenciaPut );
 
 
-
-/***
- *
- * ,[
-    check('id', 'No es un ID válido').isMongoId(),
-    check('id').custom( existeUIncidenciaPorId ),
-    validarCampos
-]
- */
 
 router.delete('/:id',incidenciaDelete );
 

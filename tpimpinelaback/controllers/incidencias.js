@@ -1,5 +1,4 @@
 const { response, request } = require('express');
-const { Role } = require('../models');
 const Incidencia = require('../models/incidencia');
 
 
